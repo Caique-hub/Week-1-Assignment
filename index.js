@@ -34,18 +34,24 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // 2. Print out the names of characters whose age is less than 40 in the console, then render them in the HTML list with id "young-characters-list"
   users.forEach(user => {
-    console.log(user.age);
-
+    if (user.age < 40) {
+      console.log(user.name);
+      console.log(user.age);
+    
     const list = document.getElementById("young-characters-list");
     const li = document.createElement("li");
+    li.textContent = user.name;
 
     list.appendChild(li);
-  })
+  }
+  });
   // 3. Create a reusable function that takes any array and uses logic to render a list of character names in the HTML. Use this function to populate the list with id "function-list"
   function printArray(myArray) {
     const list = document.getElementById("function-list");
 
     myArray.forEach(item => {
+      console.log(item.name);
+      
       const li = document.createElement("li");
       li.textContent = item.name;
 
@@ -88,5 +94,5 @@ document.addEventListener("DOMContentLoaded", function() {
       brokenErrorMsg.textContent = "No name property found";
       brokenErrorsDiv.appendChild(brokenErrorMsg);
     }
-
+  });
 });
