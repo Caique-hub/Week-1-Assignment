@@ -30,8 +30,6 @@ document.addEventListener("DOMContentLoaded", function() {
     list.appendChild(li);
   });
 
-
-
   // 2. Print out the names of characters whose age is less than 40 in the console, then render them in the HTML list with id "young-characters-list"
   users.forEach(user => {
     if (user.age < 40) {
@@ -45,9 +43,10 @@ document.addEventListener("DOMContentLoaded", function() {
     list.appendChild(li);
   }
   });
+
   // 3. Create a reusable function that takes any array and uses logic to render a list of character names in the HTML. Use this function to populate the list with id "function-list"
-  
-  function printArray(myArray) {
+
+  function printReusableArray(myArray) {
     const list = document.getElementById("function-list");
 
     for (let i = 0; i < myArray.length; i++) {
@@ -58,27 +57,26 @@ document.addEventListener("DOMContentLoaded", function() {
       list.appendChild(li);
     }
   }
-  
-  // Call the function to populate the list
-  printArray(users);
-  
-    // 4. Create a function that takes an array and an age threshold parameter. The function should only display characters whose age is below the given number. Render results in the list with id "age-filter-list"
-  
-  
-  function printArrayWithAgeFilter(myArray, age) {
+
+  printReusableArray(users);
+
+  // 4. Create a function that takes an array and an age threshold parameter. The function should only display characters whose age is below the given number. Render results in the list with id "age-filter-list"
+
+  function printArray(myArray, ageThreshold) {
     const list = document.getElementById("age-filter-list");
   
     myArray.forEach(item => {
-      if (item.age < age) {
-        console.log(age)
+      if (item.age < ageThreshold) {
+        console.log(`${item.name} is ${item.age} years old (below ${ageThreshold})`);
         const li = document.createElement("li");
-        li.textContent = item.name;
-  
+        li.textContent = `${item.name} (Age: ${item.age})`;
         list.appendChild(li);
       }
-      age = 60
     });
-  };
+  }
+
+  // Call the function with age threshold of 60
+  printArray(users, 60);
 
   // 5. Add error handling to your functions that will log an error message using console.error() if any object doesn't have a "name" property. Display any error messages in the div with id "error-messages"
   const errorMessagesDiv = document.getElementById("error-messages");
